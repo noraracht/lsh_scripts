@@ -18,6 +18,7 @@ df$tool <- factor(df$tool, levels=c("CLARK", "CLARK-S", "Bowtie", "CONSULT", "Kr
 
 ggplot(df, aes(x=tool, y = time_min, group = threads))+
   geom_bar(aes(fill = threads), stat="identity", position=position_dodge())+
+  geom_text(aes(label=round(time_min)), position=position_dodge(width=0.9), vjust=-0.25, size=3)+
   geom_line(mapping = aes(x = df$tool, y = df$memory_G), color = "black", linetype = "dashed") + 
   theme_classic()+
   #theme_minimal()+
@@ -28,5 +29,6 @@ ggplot(df, aes(x=tool, y = time_min, group = threads))+
   scale_y_continuous(name = "Running time (min)", trans = "log10", sec.axis = sec_axis(~./1, name = "Memory (G)"))+
   #ylab(expression(-log[10]))+
   theme(legend.position = c(0.5,-0.22), legend.margin=margin(t = -0.1, unit='cm'), legend.direction="horizontal")
+  #text(label= df$time_min)
 ggsave("tools_runtime.pdf",width=5,height = 4)
 
