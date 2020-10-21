@@ -1,0 +1,6 @@
+"DB","METHOD","x.x","x.y","condition"
+"gtdb","lsh",66.176383979917,5.0281248593757,"p4c1"
+"kraken_std_bact_arch","kraken",16.6984335169158,0.983,"0.05"
+"kraken_std_bact_arch","lsh",39.1568267059112,3.49048254758726,"p4c1"
+"tol_all_kmers","kraken",24.3666758457907,1.226,"0.05"
+"tol_all_kmers","lsh",47.0711629922095,3.71938140309298,"p4c1"
