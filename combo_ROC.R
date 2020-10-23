@@ -18,7 +18,7 @@ new_df <- do.call("rbind", list(d1, d2, d3, d4))
 new_df =new_df[new_df$condition!="0.01",]
 new_df$conditionb=new_df$condition
 
-levels(new_df$condition) <- list("default" = "0.00", "default" ="p3c0", 
+levels(new_df$condition) <- list("Default" = "0.00", "Default" ="p3c0", 
                                  "Strict" = "0.01", 
                                  "Strict+" = "p3c1", 
                                  "Strict" = "0.02", 
