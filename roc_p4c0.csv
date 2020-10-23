@@ -1,4 +1,5 @@
 "DB","METHOD","x.x","x.y","condition"
+"gtdb","kraken",57.3815483870968,8.713,"0.02"
 "gtdb","lsh",83.0567303104671,19.5314023429883,"p4c0"
 "kraken_std_bact_arch","kraken",23.7638741148702,2.803,"0.02"
 "kraken_std_bact_arch","lsh",61.5670822168145,15.401622991885,"p4c0"
