@@ -60,8 +60,9 @@ p<-ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
   #coord_cartesian(ylim=c(0,1))+
   scale_y_continuous(breaks = c(0.5, 0.6, 0.7, 0.8, 0.9, 1.0), name="True positive rate", labels = scales::percent_format(accuracy = 1), limits = c(0.5, NA))+
   scale_x_continuous(name="False positive rate", labels = scales::percent_format(accuracy = 1.0) )+
-  scale_color_brewer(palette = "Dark2", name=expression(~italic(k-mers)~' matched'), labels=c(">= 1",">= 2"))+
-  scale_linetype_manual(values=c(1, 2, 3, 4), name="p")+
+  #scale_color_brewer(palette = "Dark2", name=expression(~italic(k-mers)~' matched'), labels=c(">= 1",">= 2"))+
+  scale_color_brewer(palette = "Dark2", name=expression(~italic(c)), labels=c(">= 1",">= 2"))+
+  scale_linetype_manual(values=c(1, 2, 3, 4), name=expression(~italic(m)))+
   guides(colour = guide_legend(order = 2), linetype = guide_legend(order = 1, reverse=FALSE, ncol = 1))
 p
 ggsave(plot=p, "ROC_var_p_var_c_gorgQ_GTDB_LSH.pdf",width=5,height = 4)
