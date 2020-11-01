@@ -5,9 +5,8 @@ This repository contains summary data tables and scripts we used to processes th
 
 ### Controlled distances
 
-* Comparison of the performance of CONSULT with other tools such as Kraken-II, CLARK, CLARK-S and Bowtie.  was done TOL query set searched against TOL database.
-    - [Tol_all_kmers_bin_comp_lsh_kraken_clark_clarkS_0914.xlsx](https://github.com/noraracht/lsh_scripts/blob/main/Tol_all_kmers_bin_comp_lsh_kraken_clark_clarkS_0914.xlsx) contains recall and false positive information computed per bin for all the tools. It is an input for [Tol_allkmers_bin_cmp_082620.R script](https://github.com/noraracht/lsh_scripts/blob/main/Tol_allkmers_bin_cmp_082620.R) to generate ROC curves depicted in Fig. 1a. 
-     - [tools_runtime_1030_in_paper.xlsx](https://github.com/noraracht/lsh_scripts/blob/main/tools_runtime_1030_in_paper.xlsx) includes running time and memory data used for performance comparison of the tool. The table is used as an input into [tools_runtime_1014.R](https://github.com/noraracht/lsh_scripts/blob/main/tools_runtime_1014.R) to generate bar plots depicted in Fig. 1b. 
+* Comparison of sensitivity of CONSULT with other tools such as Kraken-II, CLARK, CLARK-S and Bowtie was done on TOL query set searched against TOL database [Tol_all_kmers_bin_comp_lsh_kraken_clark_clarkS_0914.xlsx](https://github.com/noraracht/lsh_scripts/blob/main/Tol_all_kmers_bin_comp_lsh_kraken_clark_clarkS_0914.xlsx) contains recall and false positive information computed per bin for all the tools. It is an input for [Tol_allkmers_bin_cmp_082620.R script](https://github.com/noraracht/lsh_scripts/blob/main/Tol_allkmers_bin_cmp_082620.R) to generate ROC curves depicted in Fig. 1a. 
+* Running time analysis. [tools_runtime_1030_in_paper.xlsx](https://github.com/noraracht/lsh_scripts/blob/main/tools_runtime_1030_in_paper.xlsx) includes running time and memory data used for performance comparison of the tools. The table is used as an input into [tools_runtime_1014.R](https://github.com/noraracht/lsh_scripts/blob/main/tools_runtime_1014.R) to generate bar plots depicted in Fig. 1b. 
     
 ### Novel genomes
     
