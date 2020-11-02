@@ -24,6 +24,9 @@ This repository contains summary data tables and scripts we used to processes th
 
 ### Theoretical model
 
+- Scirpt to generate theoretical model is in 
+- [Consult_v3.pptx](https://github.com/noraracht/lsh_scripts/blob/main/Consult_v3.pptx) is the sketch of the software archutecture deliniated on Fig. 1a.
+
 
 
 
