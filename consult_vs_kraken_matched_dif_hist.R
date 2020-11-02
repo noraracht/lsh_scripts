@@ -10,13 +10,13 @@ head (d)
 colnames(d)
 
 ## script to generate histogram for % matched comparison between CONSULT and Kraken
-## GTDB DB, gorg queries
+## GTDB DB, gorg queries, default settings
 qplot(us.kraken,data=d,binwidth=0.1)+
   theme_classic()+
   xlab("CONSULT- Kraken")
 
 ggplot(data=d, aes(d$us.kraken)) + 
-  geom_histogram(binwidth = 0.1)+
+  geom_histogram(binwidth = 0.1,)+
   theme_classic()+labs(x=expression(CONSULT - KRAKEN), y="Sample count")
 ggsave("prct_match_difference_hist.pdf",width=5,height = 4)
   
