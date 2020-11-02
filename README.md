@@ -28,7 +28,7 @@ This repository contains summary data tables and scripts we used to processes th
     
     - [kmer_cnt_cmp_var_tag_v2.R](https://github.com/noraracht/lsh_scripts/blob/main/kmer_cnt_cmp_var_tag_v2.R) also accepts as an input [new_t0_sparse_vals.txt](https://github.com/noraracht/lsh_scripts/blob/main/new_t0_sparse_vals.txt), [new_t1_sparse_vals.txt](https://github.com/noraracht/lsh_scripts/blob/main/new_t1_sparse_vals.txt, [new_t2_sparse_vals.txt](https://github.com/noraracht/lsh_scripts/blob/main/new_t2_sparse_vals.txt) and [new_t2_sparse_vals.txt](https://github.com/noraracht/lsh_scripts/blob/main/new_t2_sparse_vals.txt). These tables contain data about number number of *k*-mers processed during database construction vs of *k*-mer being included in a map with variable tag size. This scripts produced Fig. S4.
     
-    - [total_var_parameter_setting_1026.csv](https://github.com/noraracht/lsh_scripts/blob/main/total_var_parameter_setting_1026.csv) lists weighted recall, count of *k*-mers in a database and map sizes for TOL libraries built using CONSULT with different settings for *h*, *l*, *b* and *t*. (table.R)[https://github.com/noraracht/lsh_scripts/blob/main/table.R] takes it as an input and makes Table S1.
+    - [total_var_parameter_setting_1026.csv](https://github.com/noraracht/lsh_scripts/blob/main/total_var_parameter_setting_1026.csv) lists weighted recall, count of *k*-mers in a database and map sizes for TOL libraries built using CONSULT with different settings for *h*, *l*, *b* and *t*. [table.R](https://github.com/noraracht/lsh_scripts/blob/main/table.R) takes this file as an input to make Table S1.
 
 
 * Theoretical model
