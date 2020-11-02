@@ -63,7 +63,7 @@ ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
   scale_linetype_manual(values=c( 1,2,3,4),name="")+
   scale_shape(name="", labels = c("GTDB","Bac/Arch Kraken", "TOL"))+
   guides(colour = guide_legend(order = 3, ncol=4), linetype = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal"), shape = guide_legend(order = 2, label.direction = "horizontal"))
-ggsave("ROC_combo_col.pdf",width=5,height = 4)
+ggsave("ROC_combo_col_all.pdf",width=5,height = 4)
 
 
 ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
