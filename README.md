@@ -22,10 +22,10 @@ This repository contains summary data tables and scripts we used to processes th
  
  
  * Parameter setting
-  - [gorgQ_GTDB_var_p_var_c.R](https://github.com/noraracht/lsh_scripts/blob/main/gorgQ_GTDB_var_p_var_c.R) combines data from [combined_gorg_v1_results_var_p.csv](https://github.com/noraracht/lsh_scripts/blob/main/combined_gorg_v1_results_var_p.csv) that includes mean recall and [combined_10M_FP_plants_results_var_p_var_c.csv](https://github.com/noraracht/lsh_scripts/blob/main/combined_10M_FP_plants_results_var_p_var_c.csv) containing false positive values obtained from GORG queries searched against GTDB using CONSULT with variable *p* and *c*. The script generates plot on Fig. S2.
-  
-  S3 S4
-  Table 1
+    - [gorgQ_GTDB_var_p_var_c.R](https://github.com/noraracht/lsh_scripts/blob/main/gorgQ_GTDB_var_p_var_c.R) combines data from [combined_gorg_v1_results_var_p.csv](https://github.com/noraracht/lsh_scripts/blob/main/combined_gorg_v1_results_var_p.csv) that includes mean recall and [combined_10M_FP_plants_results_var_p_var_c.csv](https://github.com/noraracht/lsh_scripts/blob/main/combined_10M_FP_plants_results_var_p_var_c.csv) containing false positive values obtained from GORG queries searched against GTDB using CONSULT with variable *p* and *c*. The script generates plot on Fig. S2.
+    - S3
+    -S4
+    - T1
 
 
 * Theoretical model
