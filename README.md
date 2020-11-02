@@ -23,8 +23,9 @@ This repository contains summary data tables and scripts we used to processes th
  
  * Parameter setting
     - [gorgQ_GTDB_var_p_var_c.R](https://github.com/noraracht/lsh_scripts/blob/main/gorgQ_GTDB_var_p_var_c.R) combines data from [combined_gorg_v1_results_var_p.csv](https://github.com/noraracht/lsh_scripts/blob/main/combined_gorg_v1_results_var_p.csv) that includes mean recall and [combined_10M_FP_plants_results_var_p_var_c.csv](https://github.com/noraracht/lsh_scripts/blob/main/combined_10M_FP_plants_results_var_p_var_c.csv) containing false positive values obtained from GORG queries searched against GTDB using CONSULT with variable *p* and *c*. The script generates plot on Fig. S2.
-    - S3
-    -S4
+    -  [kmer_cnt_cmp_var_tag_v2.R](https://github.com/noraracht/lsh_scripts/blob/main/kmer_cnt_cmp_var_tag_v2.R) takes as an input  [t0_nodups_imbalance.txt](https://github.com/noraracht/lsh_scripts/blob/main/t0_nodups_imbalance.txt) and  [t2_nodups_imbalance.txt](https://github.com/noraracht/lsh_scripts/blob/main/t2_nodups_imbalance.txt) that contain statistics about how full each rows is in a lookup table during database construction. This script produces Fig. S3. 
+    - [kmer_cnt_cmp_var_tag_v2.R](https://github.com/noraracht/lsh_scripts/blob/main/kmer_cnt_cmp_var_tag_v2.R) also accepts as an input [new_t0_sparse_vals.txt](https://github.com/noraracht/lsh_scripts/blob/main/new_t0_sparse_vals.txt), [new_t1_sparse_vals.txt](https://github.com/noraracht/lsh_scripts/blob/main/new_t1_sparse_vals.txt, [new_t2_sparse_vals.txt](https://github.com/noraracht/lsh_scripts/blob/main/new_t2_sparse_vals.txt) and [new_t2_sparse_vals.txt](https://github.com/noraracht/lsh_scripts/blob/main/new_t2_sparse_vals.txt). These tables contain data about number number of *k*-mers processed during database construction vs of *k*-mer being included in a map with variable tag size. This scripts produced Fig. S4.
+    
     - T1
 
 
