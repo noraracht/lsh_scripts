@@ -78,10 +78,10 @@ ds2$d2 = 0
 #ds2[as.character(ds2$variable)<as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)<as.character(ds2$sample),"dist_after_human"]
 ds2[as.character(ds2$variable)<as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)<as.character(ds2$sample),"dist_after_bbmerge"]
 
-#ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_lsh_GTDB"]
+ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_lsh_GTDB"]
 #ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_kraken_GTDB"]
 #ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_lsh_BacArchKraken"]
-ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_kraken_BacArchKraken"]
+#ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_kraken_BacArchKraken"]
 
 ggplot(aes(fill=(d2-true_dist)/true_dist,
            x=variable,y=sample),
