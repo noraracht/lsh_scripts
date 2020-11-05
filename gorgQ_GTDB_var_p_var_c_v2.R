@@ -54,6 +54,8 @@ new_df
 mean_d$P <- as.character(mean_d$P)
 mean_d$C <- as.character(mean_d$C)
 
+
+
 p<-ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
   geom_point(aes(shape = factor(C), colour = factor(P)), size = 2)+
   geom_line(aes(color = factor(P)))+
