@@ -67,7 +67,8 @@ p<-ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
   #scale_color_brewer(palette = "Dark2", name=expression(~italic(k-mers)~' matched'), labels=c(">= 1",">= 2"))+
   scale_color_brewer(palette = "Dark2", name=expression(~italic(m)), labels=c("3","4", "5", "6"))+
   scale_shape_manual(values=c(16, 15, 17, 8), name=expression(~italic(c)), labels=c("1","2", "3", "4"))+
-  guides(colour = guide_legend(order = 2, label.direction = "horizontal", ncol = 4), shape = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal", ncol = 4))
+  guides(colour = guide_legend(order = 2, label.direction = "horizontal", ncol = 4), shape = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal", ncol = 4))+
+  theme(plot.margin=unit(c(0.2, 0.45, 0.1, 0.2),"cm"))
 p
 ggsave(plot=p, "ROC_var_p_var_c_gorgQ_GTDB_LSH_extended.pdf",width=5,height = 4)
 
