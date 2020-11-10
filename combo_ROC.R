@@ -113,6 +113,15 @@ ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
   guides(colour = guide_legend(order = 3, ncol=4), linetype = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal"), shape = guide_legend(order = 2, label.direction = "horizontal"))
 ggsave("ROC_combo_4.pdf",width=5,height = 4)
 
+new_df
+new_df$conditionb <- as.character(new_df$conditionb)
+new_df$conditionb[new_df$conditionb == "p3c1"] <- "p3c2"
+new_df$conditionb[new_df$conditionb == "p3c0"] <- "p3c1"
+new_df$conditionb[new_df$conditionb == "p4c1"] <- "p4c2"
+new_df$conditionb[new_df$conditionb == "p4c0"] <- "p4c1"
+
+#install.packages("ggrepel")
+library(ggrepel)
 ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
   geom_point(aes(color = METHOD, shape=DB),alpha=0.99)+
   geom_line(aes(group = interaction(DB,METHOD), color = METHOD))+
@@ -125,9 +134,12 @@ ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
   scale_linetype_manual(values=c(3, 2, 1),name="", labels = c("GTDB","Bac/Arch Kraken", "TOL"))+
   scale_size_manual(name="",values=c(0.5,1,1.5,2,1.5))+
   scale_shape(name="",labels= c("GTDB","Bac/Arch Kraken", "TOL"))+
-  geom_text(aes(label=conditionb),size=2,nudge_y = -0.012,nudge_x = 0.0039)+
-  guides(colour = guide_legend(order = 3, ncol=4), linetype = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal"), shape = guide_legend(order = 2, label.direction = "horizontal"))
-ggsave("ROC_combo_5.pdf",width=5*0.9,height = 4*0.9)
+  geom_text_repel(aes(label=conditionb), size=2,nudge_y = -0.0050, nudge_x = 0.0030)+
+  #geom_text(data=new_df[new_df$conditionb == "p4c2",], aes(label=conditionb), size=2,nudge_y = -0.015,nudge_x = 0.0020)+
+  guides(colour = guide_legend(order = 3, ncol=4), linetype = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal"), shape = guide_legend(order = 2, label.direction = "horizontal"))+
+  theme(plot.margin=unit(c(0.2, 0.30, 0.1, 0.10),"cm"))
+ggsave("ROC_combo_5_fixed.pdf",width=5*0.9,height = 4*0.9)
+
 
 new_df$condition <- ifelse(new_df$METHOD == "kraken", "0.00", "p3c0")
 write.csv(new_df,"/Users/admin/Documents/local_sens_hash/cpp_results/test_sw/ROC_GTDB_gorg_combo_p3p4/roc_p3c0.csv", row.names = FALSE)
