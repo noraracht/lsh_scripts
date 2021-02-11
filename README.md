@@ -21,6 +21,10 @@ This repository contains summary data tables and scripts we used to processes th
    - [script_dros_heatmap_v1.R](https://github.com/noraracht/lsh_scripts/blob/main/script_dros_heatmap_v1.R) takes an as input [dros_distances.csv](https://github.com/noraracht/lsh_scripts/blob/main/dros_distances.csv) that contains distance values and relative error information (ground truth, before and after filtering) for all combinations of Drosophila species and [lsh_gtdb_results_dros_queries.csv](https://github.com/noraracht/lsh_scripts/blob/main/lsh_gtdb_results_dros_queries.csv) that lists percentage of reads that have been filtered out with DTDB. This script generates plots on Fig. 4 and histogram on Fig. S6.
  
  
+* Mitochondrial assembly
+   - [script_mito_heatmap_v1.R](https://github.com/noraracht/lsh_scripts/blob/main/script_mito_heatmap_v1.R) takes an as input [combined_mitoZ_filt_unfilt_originalDanish_full](https://github.com/noraracht/lsh_scripts/blob/main/combined_mitoZ_filt_unfilt_originalDanish_full.csv) and [combined_horizontal_mitoZ_filt_unfilt_full.csv](https://github.com/noraracht/lsh_scripts/blob/main/combined_horizontal_mitoZ_filt_unfilt_full.csv) that contain annotation results for produced assemblies. This script generates plots on Fig. 4.
+ 
+ 
  * Parameter setting
     - [gorgQ_GTDB_var_p_var_c_v2.R](https://github.com/noraracht/lsh_scripts/blob/main/gorgQ_GTDB_var_p_var_c_v2.R) combines data from [combined_gorg_v1_results_var_p_extended.csv](https://github.com/noraracht/lsh_scripts/blob/main/combined_gorg_v1_results_var_p_extended.csv) that includes mean recall and [combined_10M_FP_plants_results_var_p_var_c_extended.csv](https://github.com/noraracht/lsh_scripts/blob/main/combined_10M_FP_plants_results_var_p_var_c_extended.csv) containing false positive values obtained from GORG queries searched against GTDB using CONSULT with variable *p* and *c*. The script generates plot on Fig. S5.
     
