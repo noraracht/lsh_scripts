@@ -55,18 +55,17 @@ mean_d$P <- as.character(mean_d$P)
 mean_d$C <- as.character(mean_d$C)
 
 
-
 p<-ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
   geom_point(aes(shape = factor(C), colour = factor(P)), size = 2)+
-  geom_line(aes(color = factor(P)))+
+  geom_line(aes(color = factor(P)), alpha = 0.7, size = 0.7)+
   theme_bw()+
   theme(legend.position = c(.76,.20), legend.margin=margin(t = 0.1, unit='cm'), )+
   #coord_cartesian(ylim=c(0,1))+
   scale_y_continuous(name="True positive rate", labels = scales::percent_format(accuracy = 1), limits = c(0.4, NA))+
   scale_x_continuous(name="False positive rate", labels = scales::percent_format(accuracy = 1.0) )+
-  #scale_color_brewer(palette = "Dark2", name=expression(~italic(k-mers)~' matched'), labels=c(">= 1",">= 2"))+
-  scale_color_brewer(palette = "Dark2", name=expression(~italic(m)), labels=c("3","4", "5", "6"))+
-  scale_shape_manual(values=c(16, 15, 17, 8), name=expression(~italic(c)), labels=c("1","2", "3", "4"))+
+  scale_color_manual(values = c("#b2182b", "#ef8a62", "#92c5de", "#2166ac"), name="p", labels=c("3","4", "5", "6"))+
+  #scale_shape_manual(values=c(16, 15, 17, 8), name=expression(~italic(c)), labels=c("1","2", "3", "4"))+
+  scale_shape_manual(values=c(16, 15, 17, 8), name="c", labels=c("1","2", "3", "4"))+
   guides(colour = guide_legend(order = 2, label.direction = "horizontal", ncol = 4), shape = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal", ncol = 4))+
   theme(plot.margin=unit(c(0.2, 0.45, 0.1, 0.2),"cm"))
 p
@@ -130,3 +129,7 @@ ggplot(aes(x=prct_not_matched/100,color=method),data=d)+stat_ecdf()+facet_wrap(~
 
 #getwd()
 #setwd('/Users/admin/Documents/local_sens_hash')
+
+#scale_color_brewer(palette = "Dark2", name=expression(~italic(k-mers)~' matched'), labels=c(">= 1",">= 2"))+
+#scale_color_brewer(palette = "Dark2", name=expression(~italic(p)), labels=c("3","4", "5", "6"))+
+#scale_color_manual(values = c("#b2182b", "#ef8a62", "#4393c3", "#053061"), name=expression(~italic(p)), labels=c("3","4", "5", "6"))+
