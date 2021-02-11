@@ -86,7 +86,8 @@ ggplot(df, aes(x=lines_read, y =kmers_in_map, color = tag))+
   #theme_minimal()+
   #scale_y_continuous(name = "Lookup table occupancy")+
   scale_y_continuous(name = "Encoding array occupancy")+
-  scale_color_brewer(palette = "Dark2")+
+  #scale_color_brewer(palette = "Dark2")+
+  scale_color_manual(values = c("#b2182b", "#f4a582", "#92c5de", "#2166ac"))+
   labs(color='tag size')+
   #scale_fill_manual(values=c("#0571b0", "#ca0020"), name="", labels=c("Drosophila","TOL"))+
   #theme(axis.text.x=element_text(angle=45, hjust=1))
@@ -94,9 +95,10 @@ ggplot(df, aes(x=lines_read, y =kmers_in_map, color = tag))+
   #scale_y_continuous(name=expression(k-mers~read), )+
   #scale_y_continuous(name="kmers read")+
   #ylab(expression(-log[10]))+
-  theme(legend.position = c(0.85, 0.25))
+  theme(legend.position = c(0.85, 0.30))
 #text(label= df$time_min)
-ggsave("encoding_occupancy.pdf",width=5,height = 4)
+ggsave("encoding_occupancy.pdf",width=4,height = 3)
+#ggsave("encoding_occupancy.pdf",width=5,height = 4)
 
 
 
@@ -117,7 +119,8 @@ ggplot(df, aes(x=lines_read, y =l0_l1, color = tag))+
   #theme_minimal()+
   scale_y_continuous(name = "Lookup table occupancy")+
   #scale_y_continuous(name = "Encoding array occupancy")+
-  scale_color_brewer(palette = "Dark2")+
+  #scale_color_brewer(palette = "Dark2")+
+  scale_color_manual(values = c("#b2182b", "#f4a582", "#92c5de", "#2166ac"))+
   labs(color='tag size')+
   #scale_fill_manual(values=c("#0571b0", "#ca0020"), name="", labels=c("Drosophila","TOL"))+
   #theme(axis.text.x=element_text(angle=45, hjust=1))
@@ -125,9 +128,9 @@ ggplot(df, aes(x=lines_read, y =l0_l1, color = tag))+
   #scale_y_continuous(name=expression(k-mers~read), )+
   #scale_y_continuous(name="kmers read")+
   #ylab(expression(-log[10]))+
-  theme(legend.position = c(0.85, 0.25))
+  theme(legend.position = c(0.85, 0.30))
 #text(label= df$time_min)
-ggsave("lookup_map_occupancy.pdf",width=5,height = 4)
+ggsave("lookup_map_occupancy.pdf",width=4,height = 3)
 
 
 ##### not been used ##### 
