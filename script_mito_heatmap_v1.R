@@ -123,7 +123,11 @@ ds2 = df
 
 #ds2[ds2$sample == "SRR12432370", "is_found"]=NA
 
-ds2$gene <- factor(ds2$gene, levels=unique(ds2$gene)) # good
+#ds2$gene <- factor(ds2$gene, levels=unique(ds2$gene)) # good
+ds2$gene <- factor(ds2$gene, levels=c("s-rRNA", "l-rRNA", "ND1", "ND2", "COX1", "COX2", "ATP8", "ATP6", "COX3", "ND3", "ND4L", "ND4", "ND5", "ND6", "CYTB")) # good
+
+
+
 #ds2$sample <- reorder(ds2$sample, -ds2$group)
 
 #ds2$group <- as.numeric(ds2$group, levels=unique(ds2$group))
