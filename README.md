@@ -22,7 +22,7 @@ This repository contains summary data tables and scripts we used to processes th
  
  
 * Mitochondrial assembly
-   - [script_mito_heatmap_v1.R](https://github.com/noraracht/lsh_scripts/blob/main/script_mito_heatmap_v1.R) takes an as input [combined_mitoZ_filt_unfilt_originalDanish_full](https://github.com/noraracht/lsh_scripts/blob/main/combined_mitoS_filt_unfilt_originalDanish_full.csv) and [combined_horizontal_mitoZ_filt_unfilt_full.csv](https://github.com/noraracht/lsh_scripts/blob/main/combined_horizontal_mitoS_filt_unfilt_full.csv) that contain annotation results for produced assemblies to generates plots on Fig. 5.
+   - [script_mito_heatmap_v1.R](https://github.com/noraracht/lsh_scripts/blob/main/script_mito_heatmap_v1.R) takes an as input [combined_mitoS_filt_unfilt_originalDanish_full](https://github.com/noraracht/lsh_scripts/blob/main/combined_mitoS_filt_unfilt_originalDanish_full.csv) and [combined_horizontal_mitoS_filt_unfilt_full.csv](https://github.com/noraracht/lsh_scripts/blob/main/combined_horizontal_mitoS_filt_unfilt_full.csv) that contain annotation results for produced assemblies to generates plots on Fig. 5.
  
  
  * Parameter setting
