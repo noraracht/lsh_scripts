@@ -12,7 +12,8 @@ df
 colnames(df)
 dim(df)
 
-
+df$total_genes_mito_node_x = df$CDS_mito_node_x +df$tRNA_mito_node_x +df$rRNA_mito_node_x
+df$total_genes_mito_node_y = df$CDS_mito_node_y +df$tRNA_mito_node_y +df$rRNA_mito_node_y
 
 
 ggplot(df, aes(x=len_lrgst_mito_node_y,
