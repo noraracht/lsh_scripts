@@ -144,6 +144,7 @@ ggplot(aes(fill=as.character(is_found),
        data=ds2)+#
   facet_grid(group~condition, scales ="free", space = "free_y")+
   geom_tile()+#geom_smooth(se=F,method="lm",color="red")+
+  geom_tile(data=ds2[(ds2$gene=="COX1" & ds2$condition=="Original" & ds2$group != "Unassmbled"), ], fill="#4393c3",)+
   theme_light()+
   theme(axis.text.x = element_text(angle=45,hjust=1,vjust=1))+
   theme(axis.title.x=element_blank(), axis.title.y = element_blank())+
