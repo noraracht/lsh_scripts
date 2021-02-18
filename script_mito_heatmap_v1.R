@@ -5,7 +5,8 @@ getwd()
 
 
 
-# dotplot
+# dotplots
+
 df = read.csv('combined_horizontal_mitoS_filt_unfilt_full.csv')
 #df = df[(df$gene_x) == "ND1",]
 df
@@ -16,88 +17,68 @@ df$total_genes_mito_node_x = df$CDS_mito_node_x +df$tRNA_mito_node_x +df$rRNA_mi
 df$total_genes_mito_node_y = df$CDS_mito_node_y +df$tRNA_mito_node_y +df$rRNA_mito_node_y
 
 
-ggplot(df, aes(x=len_lrgst_mito_node_y,
+#contig length dot plot (no legend)
+
+head(df)
+
+ggplot(df, aes(x=reorder(reorder(Run_x,len_lrgst_mito_node_x),group_x),
                y=len_lrgst_mito_node_x,
-               colour=as.character(group_x), shape = as.character(Publicly.Available.Species_x))) +
-  geom_point(alpha = 0.7, size = 2.4)+
+               shape = interaction(Publicly.Available.Species_x+Publicly.Available.Genus_x!=0,Publicly.Available.Species_x))) +
+  geom_point(alpha = 0.7, size = 2,aes(color="Filtered"))+
+  geom_point(alpha = 0.7, size = 2, aes(y=len_lrgst_mito_node_y,color="Unfiltered"))+
   #geom_smooth(se=F,method="lm",color="red")+
   #theme_light()+
   #theme_bw()+
   theme_classic()+
-  #theme(axis.line = element_line(colour = "black"),
-  #      panel.grid.major = element_blank(),
-  #      panel.grid.minor = element_blank(),
-  #      panel.border = element_blank(),
-  #      panel.background = element_blank()) +
+  theme(axis.text.x = element_text(angle=35,hjust=1,vjust=1,size=4),
+        axis.title.x = element_blank()) +
   #theme(legend.position = c(.20,.77))+
-  scale_color_manual(name="Sample group", labels = c('unassembled', 'medium quality', 'good quality'), values = c("#0571b0", "#f4a582", "#ca0020"))+
-  scale_shape_discrete(name="Species in db", labels = c('no', 'yes'))+
-  scale_y_continuous(name="Filtered (bp)", )+
-  scale_x_continuous(name="Not filtered (bp)")+
+  #scale_color_brewer(name="",palette = "Dark2")+
+  scale_color_manual(name="",values = c(  "#ca0020", "#0571b0"))+
+  
+  #scale_color_manual(name="Sample group", labels = c('unassembled', 'medium quality', 'good quality'), values = c("#0571b0", "#f4a582", "#ca0020"))+
+  scale_shape_discrete(name="", labels = c('New genus', 'New species','In DB'))+
+  scale_y_continuous(name="Assembly length (bp)", labels=comma )+
   geom_hline(color="black",linetype=2, yintercept = 16000, size=0.3)+
-  geom_vline(color="black",linetype=2, xintercept = 16000, size=0.3)+
-  geom_abline(slope=1, size = 0.3, color = "grey")+
+  #geom_abline(slope=1, size = 0.3, color = "grey")+
   #theme(legend.text=element_text(size=10), legend.title=element_text(size=10))+
-  theme(legend.position="none")
+  theme(legend.position="none")+
+  geom_vline(xintercept =18,linetype=3)+
+  geom_vline(xintercept =24,linetype=3)+
+  ggsave("mito_contig_len_dots2.pdf",width=4,height = 4)
 
-ggsave("mito_contig_len_dots.pdf",width=3,height = 3)
 
 
 
-ggplot(df, aes(x=total_genes_mito_node_y,
+# gene counts dot plot (legend combined with plot)
+
+
+ggplot(df, aes(x=reorder(reorder(Run_x,len_lrgst_mito_node_x),group_x),
                y=total_genes_mito_node_x,
-               colour=as.character(group_x), shape = as.character(Publicly.Available.Species_x))) +
-  geom_point(alpha = 0.7, size = 2.4)+
+               shape = interaction(Publicly.Available.Species_x+Publicly.Available.Genus_x!=0,Publicly.Available.Species_x))) +
+  geom_point(alpha = 0.7, size = 2.,aes(color="Filtered"))+
+  geom_point(alpha = 0.7, size = 2., aes(y=total_genes_mito_node_y,color="Unfiltered"))+
   #geom_smooth(se=F,method="lm",color="red")+
   #theme_light()+
   #theme_bw()+
   theme_classic()+
-  #theme(axis.line = element_line(colour = "black"),
-  #      panel.grid.major = element_blank(),
-  #      panel.grid.minor = element_blank(),
-  #      panel.border = element_blank(),
-  #      panel.background = element_blank()) +
+  theme(axis.text.x = element_text(angle=35,hjust=1,vjust=1,size=4),
+        axis.title.x = element_blank()) +
   #theme(legend.position = c(.20,.77))+
-  scale_color_manual(name="Sample group", labels = c('unassembled', 'medium quality', 'good quality'), values = c("#0571b0", "#f4a582", "#ca0020"))+
-  scale_shape_discrete(name="Species in db", labels = c('no', 'yes'))+
-  scale_y_continuous(name="Filtered", )+
-  scale_x_continuous(name="Not filtered")+
+  #scale_color_brewer(name="",palette = "Dark2")+
+  scale_color_manual(name="",values = c("#ca0020", "#0571b0"))+
+  #scale_color_manual(name="Sample group", labels = c('unassembled', 'medium quality', 'good quality'), values = c("#0571b0", "#f4a582", "#ca0020"))+
+  scale_shape_discrete(name="", labels = c('New genus', 'New species','In DB'))+
+  scale_y_continuous(name="Number of genes", labels=comma )+
   geom_hline(color="black",linetype=2, yintercept = 37, size=0.3)+
-  geom_vline(color="black",linetype=2, xintercept = 37, size=0.3)+
-  geom_abline(slope=1, size = 0.3, color = "grey")+
-  #theme(legend.text=element_text(size=10), legend.title=element_text(size=10))+
-  theme(legend.position="none")
+  #geom_abline(slope=1, size = 0.3, color = "grey")+
+  theme(legend.text=element_text(size=10), legend.title=element_text(size=10))+
+  #theme(legend.position=c (.8,0.2) )+
+  geom_vline(xintercept =18,linetype=3)+
+  geom_vline(xintercept =24,linetype=3)+
+  ggsave("mito_contig_genes_dots2.pdf",width=5.2,height = 4)
 
-ggsave("mito_gene_dots.pdf",width=3,height = 3)
 
-
-
-# get only legend
-ggplot(df, aes(x=total_genes_mito_node_y,
-               y=total_genes_mito_node_x,
-               colour=as.character(group_x), shape = as.character(Publicly.Available.Species_x))) +
-  geom_point(alpha = 0.7, size = 2.4)+
-  #geom_smooth(se=F,method="lm",color="red")+
-  #theme_light()+
-  #theme_bw()+
-  theme_classic()+
-  #theme(axis.line = element_line(colour = "black"),
-  #      panel.grid.major = element_blank(),
-  #      panel.grid.minor = element_blank(),
-  #      panel.border = element_blank(),
-  #      panel.background = element_blank()) +
-  #theme(legend.position = c(.20,.77))+
-  scale_color_manual(name="Sample group", labels = c('Unassembled', 'Poor', 'Good'), values = c("#0571b0", "#f4a582", "#ca0020"))+
-  scale_shape_discrete(name="Species in db", labels = c('no', 'yes'))+
-  scale_y_continuous(name="Filtered", )+
-  scale_x_continuous(name="Not filtered")+
-  geom_hline(color="black",linetype=2, yintercept = 37, size=0.3)+
-  geom_vline(color="black",linetype=2, xintercept = 37, size=0.3)+
-  geom_abline(slope=1, size = 0.3, color = "grey")+
-  theme(legend.text=element_text(size=10), legend.title=element_text(size=10))
-  #theme(legend.position="none")
-
-ggsave("legend_mito.pdf",width=3,height = 3)
 
 
 # big heatmap 
@@ -160,6 +141,93 @@ ggsave("mito_filt_nitfilt_original_genes_heatmap.pdf",width=8,height = 6)
 
 
 
+
+
+
+
+
+#dotplots previous versions, unused
+
+
+ggplot(df, aes(x=len_lrgst_mito_node_y,
+               y=len_lrgst_mito_node_x,
+               colour=as.character(group_x), shape = as.character(Publicly.Available.Species_x))) +
+  geom_point(alpha = 0.7, size = 2.4)+
+  #geom_smooth(se=F,method="lm",color="red")+
+  #theme_light()+
+  #theme_bw()+
+  theme_classic()+
+  #theme(axis.line = element_line(colour = "black"),
+  #      panel.grid.major = element_blank(),
+  #      panel.grid.minor = element_blank(),
+  #      panel.border = element_blank(),
+  #      panel.background = element_blank()) +
+  #theme(legend.position = c(.20,.77))+
+  scale_color_manual(name="Sample group", labels = c('unassembled', 'medium quality', 'good quality'), values = c("#0571b0", "#f4a582", "#ca0020"))+
+  scale_shape_discrete(name="Species in db", labels = c('no', 'yes'))+
+  scale_y_continuous(name="Filtered (bp)", )+
+  scale_x_continuous(name="Not filtered (bp)")+
+  geom_hline(color="black",linetype=2, yintercept = 16000, size=0.3)+
+  geom_vline(color="black",linetype=2, xintercept = 16000, size=0.3)+
+  geom_abline(slope=1, size = 0.3, color = "grey")+
+  #theme(legend.text=element_text(size=10), legend.title=element_text(size=10))+
+  theme(legend.position="none")
+
+ggsave("mito_contig_len_dots.pdf",width=3,height = 3)
+
+
+ggplot(df, aes(x=total_genes_mito_node_y,
+               y=total_genes_mito_node_x,
+               colour=as.character(group_x), shape = as.character(Publicly.Available.Species_x))) +
+  geom_point(alpha = 0.7, size = 2.4)+
+  #geom_smooth(se=F,method="lm",color="red")+
+  #theme_light()+
+  #theme_bw()+
+  theme_classic()+
+  #theme(axis.line = element_line(colour = "black"),
+  #      panel.grid.major = element_blank(),
+  #      panel.grid.minor = element_blank(),
+  #      panel.border = element_blank(),
+  #      panel.background = element_blank()) +
+  #theme(legend.position = c(.20,.77))+
+  scale_color_manual(name="Sample group", labels = c('unassembled', 'medium quality', 'good quality'), values = c("#0571b0", "#f4a582", "#ca0020"))+
+  scale_shape_discrete(name="Species in db", labels = c('no', 'yes'))+
+  scale_y_continuous(name="Filtered", )+
+  scale_x_continuous(name="Not filtered")+
+  geom_hline(color="black",linetype=2, yintercept = 37, size=0.3)+
+  geom_vline(color="black",linetype=2, xintercept = 37, size=0.3)+
+  geom_abline(slope=1, size = 0.3, color = "grey")+
+  #theme(legend.text=element_text(size=10), legend.title=element_text(size=10))+
+  theme(legend.position="none")
+
+ggsave("mito_gene_dots.pdf",width=3,height = 3)
+
+
+ggplot(df, aes(x=total_genes_mito_node_y,
+               y=total_genes_mito_node_x,
+               colour=as.character(group_x), shape = as.character(Publicly.Available.Species_x))) +
+  geom_point(alpha = 0.7, size = 2.4)+
+  #geom_smooth(se=F,method="lm",color="red")+
+  #theme_light()+
+  #theme_bw()+
+  theme_classic()+
+  #theme(axis.line = element_line(colour = "black"),
+  #      panel.grid.major = element_blank(),
+  #      panel.grid.minor = element_blank(),
+  #      panel.border = element_blank(),
+  #      panel.background = element_blank()) +
+  #theme(legend.position = c(.20,.77))+
+  scale_color_manual(name="Sample group", labels = c('Unassembled', 'Poor', 'Good'), values = c("#0571b0", "#f4a582", "#ca0020"))+
+  scale_shape_discrete(name="Species in db", labels = c('no', 'yes'))+
+  scale_y_continuous(name="Filtered", )+
+  scale_x_continuous(name="Not filtered")+
+  geom_hline(color="black",linetype=2, yintercept = 37, size=0.3)+
+  geom_vline(color="black",linetype=2, xintercept = 37, size=0.3)+
+  geom_abline(slope=1, size = 0.3, color = "grey")+
+  theme(legend.text=element_text(size=10), legend.title=element_text(size=10))
+#theme(legend.position="none")
+
+ggsave("legend_mito.pdf",width=3,height = 3)
 
 
 
