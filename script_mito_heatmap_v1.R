@@ -44,8 +44,10 @@ ggplot(df, aes(x=reorder(reorder(Run_x,len_lrgst_mito_node_x),group_x),
   #theme(legend.text=element_text(size=10), legend.title=element_text(size=10))+
   theme(legend.position="none")+
   geom_vline(xintercept =18,linetype=3)+
-  geom_vline(xintercept =24,linetype=3)+
-  ggsave("mito_contig_len_dots2.pdf",width=4,height = 4)
+  geom_vline(xintercept =24,linetype=3)
+  #ggsave("mito_contig_len_dots2.pdf",width=4,height = 4)
+
+ggsave("mito_contig_len_dots2wide.pdf",width=5.2,height = 4)
 
 
 
@@ -76,7 +78,9 @@ ggplot(df, aes(x=reorder(reorder(Run_x,len_lrgst_mito_node_x),group_x),
   #theme(legend.position=c (.8,0.2) )+
   geom_vline(xintercept =18,linetype=3)+
   geom_vline(xintercept =24,linetype=3)+
-  ggsave("mito_contig_genes_dots2.pdf",width=5.2,height = 4)
+  theme(legend.position = c(.85,.30),legend.margin=margin(t = 0.0, unit='cm'))
+  #ggsave("mito_contig_genes_dots2.pdf",width=5.2,height = 4)
+ggsave("mito_contig_genes_dots2wide.pdf",width=4.9,height = 4)
 
 
 
