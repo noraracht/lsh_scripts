@@ -20,7 +20,7 @@ This repository contains summary data tables and scripts we used to processes th
   
   
 * Real skims
-   - [script_dros_heatmap_v1.R](https://github.com/noraracht/lsh_scripts/blob/main/script_dros_heatmap_v1.R) takes an as input [dros_distances.csv](https://github.com/noraracht/lsh_scripts/blob/main/dros_distances.csv) that contains distance values and relative error information (ground truth, before and after filtering) for all combinations of Drosophila species and [lsh_gtdb_results_dros_queries.csv](https://github.com/noraracht/lsh_scripts/blob/main/lsh_gtdb_results_dros_queries.csv) that lists percentage of reads that have been filtered out with DTDB. This script generates plots on Fig. 4 and histogram on Fig. S7.
+   - [script_dros_heatmap_v1.R](https://github.com/noraracht/lsh_scripts/blob/main/script_dros_heatmap_v1.R) takes an as input [dros_distances.csv](https://github.com/noraracht/lsh_scripts/blob/main/dros_distances.csv) that contains distance values and relative error information (ground truth, before and after filtering) for all combinations of Drosophila species and [lsh_gtdb_results_dros_queries.csv](https://github.com/noraracht/lsh_scripts/blob/main/lsh_gtdb_results_dros_queries.csv) that lists percentage of reads that have been filtered out with GTDB. This script generates plots on Fig. 4 and histogram on Fig. S7.
  
  
 * Mitochondrial assembly
