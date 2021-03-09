@@ -6,7 +6,7 @@ getwd()
 
 # 1 panel combined plot, used in proposal
 d1 = read.csv('roc_p3c0.csv')
-d2 = read.csv('roc_p3c1.csv')
+#d2 = read.csv('roc_p3c1.csv')
 d3 = read.csv('roc_p4c0.csv')
 d4 = read.csv('roc_p4c1.csv')
 head (d)
@@ -37,6 +37,37 @@ levels(new_df$condition) <- list("Default" = "0.00", "Default" ="p3c0",
 mean_d$METHOD <- as.character(mean_d$METHOD)
 
 #create ROC plot
+new_df
+new_df$conditionb <- as.character(new_df$conditionb)
+new_df$conditionb[new_df$conditionb == "p3c1"] <- "p3c2"
+new_df$conditionb[new_df$conditionb == "p3c0"] <- "p3c1"
+new_df$conditionb[new_df$conditionb == "p4c1"] <- "p4c2"
+new_df$conditionb[new_df$conditionb == "p4c0"] <- "p4c1"
+
+#install.packages("ggrepel")
+library(ggrepel)
+ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
+  geom_point(aes(color = METHOD, shape=DB),alpha=0.99)+
+  geom_line(aes(group = interaction(DB,METHOD), color = METHOD))+
+  theme_bw()+
+  theme(legend.position = c(.63,.20), legend.direction = "horizontal",legend.margin=margin(t = 0.0, unit='cm') )+
+  #coord_cartesian(ylim=c(0,1))+
+  scale_y_continuous(breaks = c(0.0, 0.2, 0.4, 0.6, 0.8), name="True positive rate", labels = scales::percent_format(accuracy = 1), limits = c(0.0, NA))+
+  scale_x_continuous(name="False positive rate", labels = scales::percent_format(accuracy = 1.0) )+
+  scale_color_brewer(palette = "Dark2", name="", labels= c("Kraken","CONSULT"))+#, labels = c("0.00","p3c1","0.01","p3c2", "0.02","p4c1", "0.05","p4c2"))+
+  scale_linetype_manual(values=c(3, 2, 1),name="", labels = c("GTDB","Bac/Arch Kraken", "TOL"))+
+  scale_size_manual(name="",values=c(0.5,1,1.5,2,1.5))+
+  scale_shape(name="",labels= c("GTDB","Bac/Arch Kraken", "TOL"))+
+  geom_text_repel(aes(label=conditionb), size=2,nudge_y = -0.0050, nudge_x = 0.0030)+
+  #geom_text(data=new_df[new_df$conditionb == "p4c2",], aes(label=conditionb), size=2,nudge_y = -0.015,nudge_x = 0.0020)+
+  guides(colour = guide_legend(order = 3, ncol=4), linetype = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal"), shape = guide_legend(order = 2, label.direction = "horizontal"))+
+  theme(plot.margin=unit(c(0.2, 0.30, 0.1, 0.10),"cm"))
+ggsave("ROC_combo_5_fixed_custtax.pdf",width=5*0.9,height = 4*0.9)
+
+
+
+
+#obsolete
 ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
   geom_point(aes(color = condition, shape = DB), size = 2)+
   geom_line(aes(linetype = METHOD, color = condition))+
@@ -113,32 +144,6 @@ ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
   guides(colour = guide_legend(order = 3, ncol=4), linetype = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal"), shape = guide_legend(order = 2, label.direction = "horizontal"))
 ggsave("ROC_combo_4.pdf",width=5,height = 4)
 
-new_df
-new_df$conditionb <- as.character(new_df$conditionb)
-new_df$conditionb[new_df$conditionb == "p3c1"] <- "p3c2"
-new_df$conditionb[new_df$conditionb == "p3c0"] <- "p3c1"
-new_df$conditionb[new_df$conditionb == "p4c1"] <- "p4c2"
-new_df$conditionb[new_df$conditionb == "p4c0"] <- "p4c1"
-
-#install.packages("ggrepel")
-library(ggrepel)
-ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
-  geom_point(aes(color = METHOD, shape=DB),alpha=0.99)+
-  geom_line(aes(group = interaction(DB,METHOD), color = METHOD))+
-  theme_bw()+
-  theme(legend.position = c(.63,.20), legend.direction = "horizontal",legend.margin=margin(t = 0.0, unit='cm') )+
-  #coord_cartesian(ylim=c(0,1))+
-  scale_y_continuous(breaks = c(0.0, 0.2, 0.4, 0.6, 0.8), name="True positive rate", labels = scales::percent_format(accuracy = 1), limits = c(0.0, NA))+
-  scale_x_continuous(name="False positive rate", labels = scales::percent_format(accuracy = 1.0) )+
-  scale_color_brewer(palette = "Dark2", name="", labels= c("Kraken","CONSULT"))+#, labels = c("0.00","p3c1","0.01","p3c2", "0.02","p4c1", "0.05","p4c2"))+
-  scale_linetype_manual(values=c(3, 2, 1),name="", labels = c("GTDB","Bac/Arch Kraken", "TOL"))+
-  scale_size_manual(name="",values=c(0.5,1,1.5,2,1.5))+
-  scale_shape(name="",labels= c("GTDB","Bac/Arch Kraken", "TOL"))+
-  geom_text_repel(aes(label=conditionb), size=2,nudge_y = -0.0050, nudge_x = 0.0030)+
-  #geom_text(data=new_df[new_df$conditionb == "p4c2",], aes(label=conditionb), size=2,nudge_y = -0.015,nudge_x = 0.0020)+
-  guides(colour = guide_legend(order = 3, ncol=4), linetype = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal"), shape = guide_legend(order = 2, label.direction = "horizontal"))+
-  theme(plot.margin=unit(c(0.2, 0.30, 0.1, 0.10),"cm"))
-ggsave("ROC_combo_5_fixed.pdf",width=5*0.9,height = 4*0.9)
 
 
 new_df$condition <- ifelse(new_df$METHOD == "kraken", "0.00", "p3c0")
