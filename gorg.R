@@ -5,7 +5,9 @@ getwd()
 
 
 # 1 panel combined plot, used in proposal
-d = read.csv('combined_gorg_v1_results.csv')
+#d = read.csv('combined_gorg_v1_results.csv')
+#d = read.csv('combined_gorg_v1_results_custtax.csv')
+d = read.csv('combined_gorg_v1_results_custtax_lineplot.csv')
 head (d)
 colnames(d)
 
@@ -18,6 +20,9 @@ ggplot(aes(x=prct_not_matched/100,color=method,linetype=db),data=d[d$db!= "tol_t
   scale_linetype_manual(values=c(1,3,4),name="",labels=c("GTDB","Bac/Arch Kraken","TOL"))+
   guides(colour = guide_legend(title = NULL, order = 1, ), linetype = guide_legend(title = NULL, order = 2, reverse=FALSE))
 ggsave("contam.pdf",width=5,height = 4)
+
+
+
 
 #keyheight = unit(0.2, 'inch')
 #keyheight = unit(0.2, 'inch')
@@ -37,7 +42,11 @@ mean_d
 
 
 # read FP results for corresponding datasets
-fp = read.csv('fp_analysis_plants_c0/combined_10M_FP_plants_results.csv')
+#fp = read.csv('fp_analysis_plants_c0/combined_10M_FP_plants_results.csv')
+fp = read.csv('/Users/admin/Documents/local_sens_hash/cpp_results/test_sw/fp_analysis_plants_c0/combined_10M_FP_plants_results_custtax.csv')
+
+#fp = read.csv('/Users/admin/Documents/local_sens_hash/cpp_results/test_sw/fp_analysis_plants_c0/kraken_gtdb_results_10M_plants_FP_queries_custtax_c0.04.csv')
+
 mean_fp <- aggregate(fp$prct_matched, 
                     by = list(DB = fp$db, METHOD = fp$method), 
                     FUN = mean)
@@ -67,12 +76,13 @@ ggsave(plot=p, "ROC_p3c0.pdf",width=5,height = 4)
 
 new_df$condition <- ifelse(new_df$METHOD == "kraken", "0.00", "p3c0")
 write.csv(new_df,"/Users/admin/Documents/local_sens_hash/cpp_results/test_sw/ROC_GTDB_gorg_combo_p3p4/roc_p3c0.csv", row.names = FALSE)
+#write.csv(new_df,"/Users/admin/Documents/local_sens_hash/cpp_results/test_sw/ROC_GTDB_gorg_combo_p3p4/roc_p3c0_c0.04.csv", row.names = FALSE)
 
 
 #limits = c(0.03, 0.15)
 
 
-
+#obsolete
 # clark comparison
 d = read.csv('clark_kraken_lsh_gorg_queries_1x.csv')
 head (d)
