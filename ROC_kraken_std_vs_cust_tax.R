@@ -6,6 +6,8 @@ getwd()
 
 # 1 panel combined plot, used in proposal
 d1 = read.csv('roc_p3c0.csv')
+d1$condition <- as.character(d1$condition)
+d1$condition[d1$condition == '0'] <- '0.00'
 
 
 #d2 = read.csv('roc_p3c1.csv')
@@ -39,6 +41,7 @@ new_df <- do.call("rbind", list(d1, d3, d4, d5, d6, d7))
 
 new_df <- new_df[new_df$METHOD != "lsh", ]
 new_df <- new_df[new_df$DB != "kraken_std_bact_arch", ]
+new_df <- new_df[new_df$condition != 0.04, ]
 
 
 new_df =new_df[new_df$condition!="0.01",]
