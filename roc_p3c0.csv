@@ -1,7 +1,8 @@
-"DB","METHOD","x.x","x.y","condition"
-"gtdb","kraken",72.8685302911094,13.521,"0.00"
-"gtdb","lsh",73.3780963457251,7.000164999175,"p3c0"
-"kraken_std_bact_arch","kraken",29.0620802517703,3.986,"0.00"
-"kraken_std_bact_arch","lsh",42.9380826935088,3.87358063209684,"p3c0"
-"tol_all_kmers","kraken",37.5937128245476,4.973,"0.00"
-"tol_all_kmers","lsh",51.4292338732312,4.31532842335788,"p3c0"
+DB,METHOD,x.x,x.y,condition
+gtdb,kraken,72.86853029,13.521,0
+gtdb,lsh,73.37809635,7.000164999,p3c0
+kraken_std_bact_arch,kraken,29.06208025,3.986,0
+kraken_std_bact_arch,lsh,42.93808269,3.873580632,p3c0
+tol_all_kmers,kraken,37.59371282,4.973,0
+tol_all_kmers,lsh,51.42923387,4.315328423,p3c0
+gtdb,kraken,65.21705507,8.009,0.04
