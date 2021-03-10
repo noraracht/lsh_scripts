@@ -6,6 +6,8 @@ getwd()
 
 # 1 panel combined plot, used in proposal
 d1 = read.csv('roc_p3c0.csv')
+d1$condition <- as.character(d1$condition)
+d1$condition[d1$condition == '0'] <- '0.00'
 #d2 = read.csv('roc_p3c1.csv')
 d3 = read.csv('roc_p4c0.csv')
 d4 = read.csv('roc_p4c1.csv')
