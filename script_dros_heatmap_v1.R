@@ -8,7 +8,9 @@ df = read.csv('dros_distances_updatedGTDB4.csv')
 print (df)
 
 colnames(df)
-df_filt = read.csv('lsh_gtdb_p4c2_results_dros_queries.csv')
+
+df_filt = read.csv('lsh_gtdb_results_dros_queries.csv')
+
 
 df_filt
 
@@ -29,22 +31,11 @@ df
 
 ds2= df
 ds2$d2 = 0
-#ds2[as.character(ds2$variable)<as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)<as.character(ds2$sample),"dist_after_human"]
+
 ds2[as.character(ds2$variable)<as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)<as.character(ds2$sample),"dist_after_bbmerge"]
+ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_lsh_GTDB"]
 
-ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_lsh_GTDB_p4c2"]
-#ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_lsh_GTDB"]
-#ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_kraken_GTDB"]
-#ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_lsh_BacArchKraken"]
-#ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_kraken_BacArchKraken"]
 
-#ds2[as.character(ds2$variable)>as.character(ds2$sample),"d2"] =ds2[as.character(ds2$variable)>as.character(ds2$sample),"dist_after_kraken_GTDB_custTax"]
-
-#summary(abs(df$err_lsh_BacArchKraken))
-#summary(with(ds2[as.character(ds2$variable)>as.character(ds2$sample),], abs(d2-true_dist)/true_dist))
-#head(ds2)
-
-#y=paste(sample,percent(filtered_prct/100, accuracy = 0.01),sep="\n")
 
 ggplot(aes(fill=(d2-true_dist)/true_dist,
            x=variable,y=paste(sample,percent(filtered_prct/100, accuracy = 0.01),sep="\n")),
@@ -56,7 +47,7 @@ ggplot(aes(fill=(d2-true_dist)/true_dist,
   scale_fill_gradient2(name="Relative error",label=percent)#+
 #scale_y_continuous(labels=percent,name="Delta relative error after Kraken")+
 #  scale_x_continuous(name=("Proportion filtered by Kraken"),labels=percent)+geom_hline(color="red",linetype=2,yintercept = 0)
-ggsave("Drosophila_tile_plot_lsh_GTDB_updated.pdf",width=9,height = 8)
+ggsave("Drosophila_tile_plot_lsh_GTDB.pdf",width=9,height = 8)
 #ggsave("Drosophila_tile_plot_kraken_BacArKraken.pdf",width=9,height = 8)
 #ggsave("test.pdf",width=9,height = 8)
 
@@ -79,17 +70,11 @@ ggsave("Drosophila_tile_plot_lsh_GTDB.pdf",width=9,height = 8)
 
 
 # figure to add to supplement
-qplot(abs(df$err_lsh_GTDB_p4c2)-abs(df$err_kraken_GTDB_conf0.05))+
+qplot(abs(df$err_lsh_GTDB)-abs(df$err_kraken_GTDB_conf0.04))+
   theme_bw()+
   scale_x_continuous(labels = percent, name = expression(CONSULT-KRAKEN~error))+
   geom_vline(xintercept = 0, color = "red")
 ggsave("Kraken_vs_LSH_delta_relative_error_lsh_GTDB.pdf",width=5,height = 4)
-#t.test(abs(df$err_lsh_GTDB_p4c2)-abs(df$err_kraken_GTDB_conf0.05), alternative = c("two.sided"))
-
-
-summary(abs(df$err_lsh_GTDB_p4c2))
-summary(abs(df$err_kraken_GTDB_conf0.05))
-?t.test
 
 
 
@@ -129,7 +114,7 @@ df$filtered_prct.y <- df_filt$prct_matched[match(df$variable, df_filt$sp)]
 df
 
 
-ggplot(aes(color=abs(dist_after_bbmerge-true_dist)/true_dist,y=abs(dist_after_bbmerge-true_dist)/true_dist-abs(dist_after_lsh_GTDB_p4c2-true_dist)/true_dist, 
+ggplot(aes(color=abs(dist_after_bbmerge-true_dist)/true_dist,y=abs(dist_after_bbmerge-true_dist)/true_dist-abs(dist_after_lsh_GTDB-true_dist)/true_dist, 
            x=(filtered_prct+filtered_prct.y)/200),
        data=df)+
   geom_point()+geom_smooth(se=F,method="lm",color="red")+
@@ -138,7 +123,7 @@ ggplot(aes(color=abs(dist_after_bbmerge-true_dist)/true_dist,y=abs(dist_after_bb
   scale_color_continuous(name="Error before filtering",label=percent)+
   scale_y_continuous(labels=percent,name="Change in relative error after filtering")+
   scale_x_continuous(name=("Proportion filtered"),labels=percent)+geom_hline(color="red",linetype=2,yintercept = 0)
-ggsave("Drosophila--proportion_filtered-delta_in_error_lsh_GTDB_updated.pdf",width=5,height = 4)
+ggsave("Drosophila--proportion_filtered-delta_in_error_lsh_GTDB.pdf",width=5,height = 4)
 #ggsave("Drosophila--proportion_filtered-delta_in_error_updated_conf0.05.pdf",width=5,height = 4)
 
 
