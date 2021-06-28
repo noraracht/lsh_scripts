@@ -1,0 +1,10 @@
+sample,condition,s-rRNA,l-rRNA,ND1,ND2,COX1,COX2,ATP8,ATP6,COX3,ND3,ND4L,ND4,ND5,ND6,CYTB
+SRR11679474,Filtered,1,1,1,1,3,3,3,4,4,2,2,2,2,,5
+SRR11679474,Not filtered,3,4,,,,,,,,,,,,,
+SRR11679474,Original,,,,,1,1,1,1,1,,,,,,
+SRR11537214,Filtered,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1
+SRR11537214,Not filtered,,,,,,,,,,,,,,,13
+SRR11537214,Original,,,,1,1,1,1,1,1,1,1,1,1,1,1
+SRR11679555,Filtered,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1
+SRR11679555,Not filtered,2,2,2,2,2,2,2,2,2,2,2,2,2,,2
+SRR11679555,Original,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
