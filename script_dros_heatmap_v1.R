@@ -117,7 +117,7 @@ df
 ggplot(aes(color=abs(dist_after_bbmerge-true_dist)/true_dist,y=abs(dist_after_bbmerge-true_dist)/true_dist-abs(dist_after_lsh_GTDB-true_dist)/true_dist, 
            x=(filtered_prct+filtered_prct.y)/200),
        data=df)+
-  geom_point()+geom_smooth(se=F,method="lm",color="red")+
+  geom_point(alpha=0.99)+geom_smooth(se=F,method="lm",color="red")+
   theme_light()+
   theme(legend.position = c(.20,.77))+
   scale_color_continuous(name="Error before filtering",label=percent)+
