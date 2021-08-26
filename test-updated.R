@@ -47,7 +47,7 @@ ggplot(data.frame(x = c(1, 16)), aes(x)) + theme_classic()+
     stat_function(fun = function(x,k,l,SL) (1+150-SL)*f(x,k,l,SL), 
                   args = list(k = K, l=L, SL=SL), 
                   aes(color=as.factor(L)))
-  },L=rep(c(2, 1),each=5), K=c(14))+
+  },L=rep(c(2, 1),each=5), K=c(15))+
   #geom_vline(xintercept = 3,color="black",linetype=2)+
   #geom_vline(xintercept = SL*0.4,color="black",linetype=2)+
   #geom_hline(yintercept = 90,color="black",linetype=2)+
@@ -60,8 +60,33 @@ ggplot(data.frame(x = c(1, 16)), aes(x)) + theme_classic()+
   stat_function(fun = function(x) (1+150-SL)*f(x,35-7,1,35)/2, color="blue",linetype=1)+
   geom_vline(xintercept = 3,color="red",linetype=3)+
   geom_vline(xintercept = 10,color="red",linetype=3)+
-  #theme(legend.position = "none")+
+  theme(legend.position = "none")+
 ggsave("exp-def.pdf",width=5,height = 4)
+
+
+alpha=0.1
+ggplot(data.frame(x = c(1, 16)), aes(x)) + theme_classic()+
+  mapply(FUN=function( L, K) {
+    stat_function(fun = function(x,k,l,SL) (1+150-SL)*f(x,k,l,SL), 
+                  args = list(k = K, l=L, SL=SL), 
+                  aes(color=as.factor(K)))
+  },L=rep(c(2),each=5), K=c(15, 10, 6))+
+  #geom_vline(xintercept = 3,color="black",linetype=2)+
+  #geom_vline(xintercept = SL*0.4,color="black",linetype=2)+
+  #geom_hline(yintercept = 90,color="black",linetype=2)+
+  scale_y_continuous(lim=c(0.1,100))+
+  #scale_linetype_manual(values=c(1,2,3),name=expression(h))+
+  scale_x_continuous(labels=function(x) paste(x,percent(x/SL),sep="\n"))+
+  scale_color_manual(name="l", values = c("grey50", "black", "grey80"))+
+  ylab("Expected number of kmer matches per 150bp read")+
+  xlab("Hamming distance")+
+  #stat_function(fun = function(x) (1+150-SL)*f(x,35-7,1,35)/2, color="blue",linetype=1)+
+  geom_vline(xintercept = 3,color="red",linetype=3)+
+  geom_vline(xintercept = 10,color="red",linetype=3)+
+  theme(legend.position = "none")+
+  ggsave("exp-def2.pdf",width=5,height = 4)
+
+
 
 
 
