@@ -42,7 +42,7 @@ This repository contains summary data tables and scripts we used to processes th
 * Theoretical model
    <!--- Scirpt to generate theoretical model in Fig. 1b. and Fig. S1.-->
    - [Consult_v3.pptx](https://github.com/noraracht/lsh_scripts/blob/main/Consult_v3.pptx) is the sketch of the software archutecture displayed on Fig. 1a.
-   - [LSH model](https://github.com/noraracht/lsh_scripts/blob/main/test-2.r)
+   - [LSH model](https://github.com/noraracht/lsh_scripts/blob/main/test-2.r) represents probabilities computation shown in Fig. 1b.
 
 
 
