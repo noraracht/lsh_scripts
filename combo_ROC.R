@@ -8,13 +8,14 @@ getwd()
 d1 = read.csv('roc_p3c0.csv')
 d1$condition <- as.character(d1$condition)
 d1$condition[d1$condition == '0'] <- '0.00'
-#d2 = read.csv('roc_p3c1.csv')
+d2 = read.csv('roc_p3c1.csv')
 d3 = read.csv('roc_p4c0.csv')
 d4 = read.csv('roc_p4c1.csv')
 head (d)
 colnames(d)
 
 
+#new_df <- do.call("rbind", list(d1, d3, d4))
 new_df <- do.call("rbind", list(d1, d2, d3, d4))
 
 new_df =new_df[new_df$condition!="0.01",]
@@ -65,6 +66,29 @@ ggplot(new_df, aes(x=x.y/100, y=x.x/100))+
   guides(colour = guide_legend(order = 3, ncol=4), linetype = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal"), shape = guide_legend(order = 2, label.direction = "horizontal"))+
   theme(plot.margin=unit(c(0.2, 0.30, 0.1, 0.10),"cm"))
 ggsave("ROC_combo_5_fixed_custtax.pdf",width=5*0.9,height = 4*0.9)
+
+
+################################################################
+# in ppt
+
+ggplot(data = new_df[new_df$DB!='kraken_std_bact_arch',], aes(x=x.y/100, y=x.x/100))+
+  geom_point(aes(color = METHOD, shape=DB),alpha=0.99)+
+  geom_line(aes(group = interaction(DB,METHOD), color = METHOD))+
+  theme_bw()+
+  theme(legend.position = c(.63,.20), legend.direction = "horizontal",legend.margin=margin(t = 0.0, unit='cm') )+
+  #coord_cartesian(ylim=c(0,1))+
+  scale_y_continuous(breaks = c(0.0, 0.2, 0.4, 0.6, 0.8), name="True positive rate", labels = scales::percent_format(accuracy = 1), limits = c(0.0, NA))+
+  scale_x_continuous(name="False positive rate", labels = scales::percent_format(accuracy = 1.0) )+
+  scale_color_brewer(palette = "Dark2", name="", labels= c("Kraken","CONSULT"))+#, labels = c("0.00","p3c1","0.01","p3c2", "0.02","p4c1", "0.05","p4c2"))+
+  scale_linetype_manual(values=c(3, 2, 1),name="", labels = c("GTDB", "TOL"))+
+  scale_size_manual(name="",values=c(0.5,1,1.5,2,1.5))+
+  scale_shape_manual(name="",labels= c("GTDB","TOL"), values = c(16, 15))+
+  geom_text_repel(aes(label=conditionb), size=2,nudge_y = -0.0050, nudge_x = 0.0030)+
+  #geom_text(data=new_df[new_df$conditionb == "p4c2",], aes(label=conditionb), size=2,nudge_y = -0.015,nudge_x = 0.0020)+
+  guides(colour = guide_legend(order = 3, ncol=4), linetype = guide_legend(order = 1, reverse=FALSE, label.direction = "horizontal"), shape = guide_legend(order = 2, label.direction = "horizontal"))+
+  theme(plot.margin=unit(c(0.2, 0.30, 0.1, 0.10),"cm"))
+ggsave("ROC_combo_5_fixed_custtax_twoDBs.pdf",width=5*0.9,height = 4*0.9)
+
 
 
 
